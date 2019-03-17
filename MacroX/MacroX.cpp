@@ -6,11 +6,18 @@
 
 template <typename T>
 void printTracks(T aTrack) {
-    if constexpr (HasCEPX<T>::value) {
+    /*if constexpr (HasCEPX<T>::value) {
         std::cout << aTrack.aTrackX << " a track aTrackX " << std::endl;
     }
     if constexpr (HasCEPY<T>::value) {
         std::cout << aTrack.aTrackY << " a track aTrackY" << std::endl;
+    }*/
+
+    if constexpr (HAS_MEMBER(T, aTrackY)) {
+        std::cout << aTrack.aTrackY << " a track aTrackY" << std::endl;
+    }
+    if constexpr (HAS_MEMBER(T, aTrackX)) {
+        std::cout << aTrack.aTrackX << " a track aTrackX" << std::endl;
     }
 }
 
