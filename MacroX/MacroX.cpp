@@ -1,21 +1,30 @@
-// MacroX.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+// MacroX.cpp
 #include "pch.h"
 #include <iostream>
 
-int main()
-{
-    std::cout << "Hello World!\n"; 
+#include "Structs001.h"
+
+template <typename T>
+void printTracks(T aTrack) {
+    if constexpr (HasCEPX<T>::value) {
+        std::cout << aTrack.aTrackX << " a track aTrackX " << std::endl;
+    }
+    if constexpr (HasCEPY<T>::value) {
+        std::cout << aTrack.aTrackY << " a track aTrackY" << std::endl;
+    }
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+int main() {
+    StructWithXTracks structWithXTracks{};
+    structWithXTracks.aTrackX = 1;
+    printTracks(structWithXTracks);
+    StructNoTracks structNoTracks{};
+    printTracks(structNoTracks);
+    StructWithYTracks structWithYTracks{};
+    structWithYTracks.aTrackY = 2;
+    printTracks(structWithYTracks);
+    StructWithXAndYTracks structWithXAndYTracks{};
+    structWithXAndYTracks.aTrackX = 3;
+    structWithXAndYTracks.aTrackY = 4;
+    printTracks(structWithXAndYTracks);
+}
