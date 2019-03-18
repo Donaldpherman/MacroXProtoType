@@ -6,25 +6,6 @@
 
 #include <type_traits>
 
-/*template <typename T, typename = int>
-struct HasCEPX : std::false_type {};
-
-template <typename T>
-struct HasCEPX 
-<T, decltype((void)T::aTrackX, 0)> : std::true_type {};
-
-template <typename T, typename = int>
-struct HasCEPY : std::false_type {};
-
-template <typename T>
-struct HasCEPY <T, decltype((void)T::aTrackY, 0)> : std::true_type {};
-
-template <typename T, typename = int>
-struct has_id : std::false_type {};
-
-template <typename T>
-struct has_id  <T, decltype((void)T::id, 0)> : std::true_type {};*/
-
 #define DEFINE_MEMBER_CHECKER(member) \
     template<typename T, typename V = int> \
     struct has_ ## member : std::false_type { }; \
