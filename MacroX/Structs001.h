@@ -6,6 +6,17 @@
 
 #include <type_traits>
 
+/*
+Some examples of the template that the MACRO DEFINE_MEMBER_CHECKER generates.
+
+template <typename T, typename = int>
+struct HasX : std::false_type {};
+
+template <typename T>
+struct HasX
+<T, decltype((void)T::aTrackX, 0)> : std::true_type {};
+*/
+
 #define DEFINE_MEMBER_CHECKER(member) \
     template<typename T, typename V = int> \
     struct has_ ## member : std::false_type { }; \
